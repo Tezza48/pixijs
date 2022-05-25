@@ -192,7 +192,7 @@ describe('TextMetrics', function ()
             });
         });
 
-        it('no words or characters should lost or changed', function ()
+        it.only('no words or characters should lost or changed', function ()
         {
             const style = Object.assign({}, defaultStyle, { breakWords: true });
 
@@ -203,15 +203,15 @@ describe('TextMetrics', function ()
             expect(lines).to.equal(intergityText, 'should have the same chars as the original text');
         });
 
-        it('no words or characters should be lost or changed with multi-byte wordWrapSplit override', function ()
+        it.only('no words or characters should be lost or changed with multi-byte wordWrapSplit override', function ()
         {
             const style = Object.assign({}, defaultStyle, { breakWords: true });
 
-            const multibyteIntegrityText = '012345678901234567890123456789';
+            const multibyteIntegrityText = '🤣1a🤣2b🤣3c🤣4d🤣5e🤣6f🤣7g🤣8h🤣9i🤣0j';
 
             TextMetrics.wordWrapSplit = function ()
             {
-                return ['01', '2', '3', '45', '67', '89', '0', '123', '4', '5', '67', '8', '9', '01', '2', '3', '45', '6', '7', '89'];
+                return ['🤣', '1', 'a', '🤣', '2', 'b', '🤣', '3', 'c', '🤣', '4', 'd', '🤣', '5', 'e', '🤣', '6', 'f', '🤣', '7', 'g', '🤣', '8', 'h', '🤣', '9', 'i', '🤣', '0', 'j'];
             };
 
             const metrics = TextMetrics.measureText(multibyteIntegrityText, new TextStyle(style));

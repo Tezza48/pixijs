@@ -267,8 +267,6 @@ export class TextMetrics
                     {
                         let char = characters[j];
 
-                        let shouldIncrementLength = false;
-
                         let k = 1;
                         // we are not at the end of the token
 
@@ -282,8 +280,6 @@ export class TextMetrics
                             {
                                 // combine chars & move forward one
                                 char += nextChar;
-
-                                shouldIncrementLength = true;
                             }
                             else
                             {
@@ -293,7 +289,7 @@ export class TextMetrics
                             k++;
                         }
 
-                        if (shouldIncrementLength) j += char.length - 1;
+                        j += char.length - 1;
 
                         const characterWidth = TextMetrics.getFromCache(char, letterSpacing, cache, context);
 
