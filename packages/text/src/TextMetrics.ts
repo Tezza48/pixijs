@@ -267,7 +267,7 @@ export class TextMetrics
                     {
                         let char = characters[j];
 
-                        let shouldIncrementLength = false
+                        let shouldIncrementLength = false;
 
                         let k = 1;
                         // we are not at the end of the token

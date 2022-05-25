@@ -144,12 +144,6 @@ describe('TextMetrics', function ()
 
     describe('wordWrap with breakWords', function ()
     {
-        const originalCanBreakChars = TextMetrics.canBreakChars;
-
-        this.afterEach(() => {
-            TextMetrics.canBreakChars = originalCanBreakChars;
-        })
-
         it('width should not be greater than wordWrapWidth with longText', function ()
         {
             const style = Object.assign({}, defaultStyle, { breakWords: true });
@@ -209,20 +203,23 @@ describe('TextMetrics', function ()
             expect(lines).to.equal(intergityText, 'should have the same chars as the original text');
         });
 
-        it('no words or characters should be lost or changed with multi-byte wordWrapSplit override', function() {
+        it('no words or characters should be lost or changed with multi-byte wordWrapSplit override', function ()
+        {
             const style = Object.assign({}, defaultStyle, { breakWords: true });
 
-            const multibyteIntegrityText = "012345678901234567890123456789";
-            TextMetrics.wordWrapSplit = function() {
-                return ["01", "2", "3", "45", "67", "89", "0", "123", "4", "5", "67", "8", "9", "01", "2", "3", "45", "6", "7", "89"]
-            }
+            const multibyteIntegrityText = '012345678901234567890123456789';
+
+            TextMetrics.wordWrapSplit = function ()
+            {
+                return ['01', '2', '3', '45', '67', '89', '0', '123', '4', '5', '67', '8', '9', '01', '2', '3', '45', '6', '7', '89'];
+            };
 
             const metrics = TextMetrics.measureText(multibyteIntegrityText, new TextStyle(style));
 
             const lines = metrics.lines.reduce((accumulator, line) => accumulator + line);
 
             expect(lines).to.equal(multibyteIntegrityText, 'should have the same chars as the original text');
-        })
+        });
 
         it('width should not be greater than wordWrapWidth and should format correct spaces', function ()
         {
