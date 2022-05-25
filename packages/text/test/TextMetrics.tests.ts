@@ -192,7 +192,7 @@ describe('TextMetrics', function ()
             });
         });
 
-        it.only('no words or characters should lost or changed', function ()
+        it('no words or characters should lost or changed', function ()
         {
             const style = Object.assign({}, defaultStyle, { breakWords: true });
 
@@ -203,7 +203,7 @@ describe('TextMetrics', function ()
             expect(lines).to.equal(intergityText, 'should have the same chars as the original text');
         });
 
-        it.only('no words or characters should be lost or changed with multi-byte wordWrapSplit override', function ()
+        it('no words or characters should be lost or changed with multi-byte wordWrapSplit override', function ()
         {
             const style = Object.assign({}, defaultStyle, { breakWords: true });
 
